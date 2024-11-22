@@ -1,61 +1,45 @@
-//
-//  ContentView.swift
-//  TravelPlace
-//
-//  Created by Наталья Атюкова on 21.11.2024.
-//
-
 import SwiftUI
-import SwiftData
+
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @State private var searchText1 = ""
+    @State private var searchText2 = ""
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        NavigationView {
+            VStack(alignment: .leading) {
+                VStack(spacing: 10) {
+                    SearchBar(text: $searchText1, placeholder: "Search for places...")
+                    SearchBar(text: $searchText2, placeholder: "Search for destinations, activities, or services")
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
+                .padding(.horizontal)
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
+                Text("Popular Destinations")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
+                    .padding(.top)
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                        ForEach(popularDestinations) { destination in
+                            DestinationCard(destination: destination)
+                        }
+                    }
+                    .padding()
+                }
+
+                Spacer()
+
+                BottomNavigationBar()
             }
+            .navigationTitle("TravelPlace - Popular Destinations")
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
