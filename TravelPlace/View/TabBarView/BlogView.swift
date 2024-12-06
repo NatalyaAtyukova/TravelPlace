@@ -3,6 +3,8 @@ import SwiftUI
 struct BlogView: View {
     @State private var searchText: String = ""
     @State private var selectedTab: String = "home" // "home" или "explore"
+    @State private var userPosts: [Post] = [] // Хранение пользовательских постов
+    @State private var isPresentingNewPostView = false // Контроль отображения экрана создания поста
 
     let featuredPosts = samplePosts
 
@@ -60,10 +62,35 @@ struct BlogView: View {
                         .font(.headline)
                         .padding(.horizontal)
 
-                    // Здесь можно добавить пользовательские посты
+                    if userPosts.isEmpty {
+                        Text("No posts yet. Be the first to share your experience!")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal)
+                    } else {
+                        ForEach(userPosts, id: \.id) { post in
+                            UserGeneratedPostCard(post: post)
+                        }
+                        .padding(.horizontal)
+                    }
                 }
+
+                Spacer()
             }
             .navigationTitle("Blog View")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isPresentingNewPostView = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $isPresentingNewPostView) {
+                NewPostView { newPost in
+                    userPosts.append(newPost) // Добавляем новый пост
+                }
+            }
         }
     }
 }

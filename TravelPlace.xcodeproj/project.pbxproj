@@ -28,6 +28,7 @@
 		C8776B422D02188C0091BB75 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B412D02188C0091BB75 /* Comment.swift */; };
 		C8776B442D0218EE0091BB75 /* UserGeneratedPostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B432D0218EE0091BB75 /* UserGeneratedPostCard.swift */; };
 		C8776B462D021A650091BB75 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B452D021A630091BB75 /* Data.swift */; };
+		C8781EB12D0332280068077E /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB02D0332270068077E /* NewPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		C8776B412D02188C0091BB75 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C8776B432D0218EE0091BB75 /* UserGeneratedPostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGeneratedPostCard.swift; sourceTree = "<group>"; };
 		C8776B452D021A630091BB75 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		C8781EB02D0332270068077E /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		C8BFAD832CEF69B2009CE628 /* TravelPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		C8776B302D0213880091BB75 /* TabBarView */ = {
 			isa = PBXGroup;
 			children = (
+				C8781EB02D0332270068077E /* NewPostView.swift */,
 				C8776B3B2D02147E0091BB75 /* ProfileView.swift */,
 				C8776B392D0214750091BB75 /* FavoritesView.swift */,
 				C8776B372D02144A0091BB75 /* BlogView.swift */,
@@ -234,6 +237,7 @@
 				C85ECE4E2CF0F66A000F0533 /* ExploreView.swift in Sources */,
 				C8776B3C2D02147F0091BB75 /* ProfileView.swift in Sources */,
 				C85ECE4B2CF0F632000F0533 /* DestinationCard.swift in Sources */,
+				C8781EB12D0332280068077E /* NewPostView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
