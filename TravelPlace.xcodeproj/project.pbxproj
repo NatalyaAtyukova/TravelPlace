@@ -30,6 +30,7 @@
 		C8776B462D021A650091BB75 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B452D021A630091BB75 /* Data.swift */; };
 		C8781EB12D0332280068077E /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB02D0332270068077E /* NewPostView.swift */; };
 		C8781EB32D0332F90068077E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB22D0332F70068077E /* EditProfileView.swift */; };
+		C8781EB52D03372A0068077E /* FavoritePlaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB42D0337290068077E /* FavoritePlaceCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		C8776B452D021A630091BB75 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C8781EB02D0332270068077E /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		C8781EB22D0332F70068077E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		C8781EB42D0337290068077E /* FavoritePlaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaceCard.swift; sourceTree = "<group>"; };
 		C8BFAD832CEF69B2009CE628 /* TravelPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				C8776B302D0213880091BB75 /* TabBarView */,
 				C85ECE512CF0F69C000F0533 /* PlaceCard.swift */,
 				C85ECE362CF0F632000F0533 /* BottomNavigationBar.swift */,
+				C8781EB42D0337290068077E /* FavoritePlaceCard.swift */,
 				C8776B432D0218EE0091BB75 /* UserGeneratedPostCard.swift */,
 				C8776B3D2D0216780091BB75 /* FeaturedPostCard.swift */,
 				C85ECE4F2CF0F67C000F0533 /* CategoryFilterView.swift */,
@@ -242,6 +245,7 @@
 				C8776B3C2D02147F0091BB75 /* ProfileView.swift in Sources */,
 				C85ECE4B2CF0F632000F0533 /* DestinationCard.swift in Sources */,
 				C8781EB12D0332280068077E /* NewPostView.swift in Sources */,
+				C8781EB52D03372A0068077E /* FavoritePlaceCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

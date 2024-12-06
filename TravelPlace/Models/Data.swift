@@ -16,3 +16,4 @@ let popularDestinations = [
     Destination(name: "Rio de Janeiro, Brazil", details: "Relax on the beautiful beaches of Rio and visit the iconic Christ the Redeemer.", imageName: "rio", rating: 4.5),
     Destination(name: "Tokyo, Japan", details: "Experience the unique culture, modern technology, and ancient traditions of Tokyo.", imageName: "tokyo", rating: 4.8)
 ]
+
