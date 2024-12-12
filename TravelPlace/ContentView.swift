@@ -1,13 +1,23 @@
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    var body: some View {
-        MainTabView() // Подключение `MainTabView` для навигации
-    }
-}
+    @EnvironmentObject private var userManager: UserManager // Использование UserManager
+    @Query(filter: #Predicate<User> { !$0.username.isEmpty }) private var users: [User]
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var body: some View {
+        Group {
+            if let currentUser = userManager.currentUser {
+                MainTabView()
+                    .environmentObject(userManager) // Передача UserManager в дочерние представления
+            } else if let firstUser = users.first {
+                RegistrationView()
+                    .onAppear {
+                        userManager.currentUser = firstUser
+                    }
+            } else {
+                RegistrationView()
+            }
+        }
     }
 }

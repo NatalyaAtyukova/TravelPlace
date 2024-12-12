@@ -1,18 +1,16 @@
-//
-//  TravelPlaceApp.swift
-//  TravelPlace
-//
-//  Created by Наталья Атюкова on 21.11.2024.
-//
-
 import SwiftUI
 import SwiftData
 
 @main
 struct TravelPlaceApp: App {
+    @StateObject private var userManager = UserManager() // Создание UserManager
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Destination.self,
+            User.self,
+            Post.self,
+            Comment.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,7 +24,8 @@ struct TravelPlaceApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(sharedModelContainer) // Передача ModelContainer
+                .environmentObject(userManager) // Передача UserManager
         }
-        .modelContainer(sharedModelContainer)
     }
 }

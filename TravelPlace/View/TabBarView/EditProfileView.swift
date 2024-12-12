@@ -1,12 +1,16 @@
 import SwiftUI
 
 struct EditProfileView: View {
-    @Binding var fullName: String
-    @Binding var nickname: String
-    @Binding var profileImage: String
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var userManager: UserManager // Для обновления текущего пользователя
+    @State private var fullName: String
+    @State private var nickname: String
 
-    let availableIcons = ["person.circle.fill", "star.circle.fill", "heart.circle.fill", "house.circle.fill"]
+    init(currentUser: User, userManager: UserManager) {
+        self.userManager = userManager
+        _fullName = State(initialValue: currentUser.name)
+        _nickname = State(initialValue: currentUser.username)
+    }
 
     var body: some View {
         NavigationView {
@@ -15,25 +19,10 @@ struct EditProfileView: View {
                     TextField("Enter your full name", text: $fullName)
                 }
 
-                Section(header: Text("Nickname")) {
-                    TextField("Enter your nickname", text: $nickname)
-                }
-
-                Section(header: Text("Profile Image")) {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(availableIcons, id: \.self) { icon in
-                                Button(action: {
-                                    profileImage = icon
-                                }) {
-                                    Image(systemName: icon)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .foregroundColor(profileImage == icon ? .blue : .gray)
-                                }
-                            }
-                        }
-                    }
+                Section(header: Text("Username")) {
+                    TextField("Enter your username", text: $nickname)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }
             }
             .navigationTitle("Edit Profile")
@@ -46,10 +35,23 @@ struct EditProfileView: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
+                        saveChanges()
                         dismiss()
                     }
                 }
             }
+        }
+    }
+
+    private func saveChanges() {
+        guard let currentUser = userManager.currentUser else { return }
+        currentUser.name = fullName
+        currentUser.username = nickname
+
+        do {
+            try userManager.saveContext()
+        } catch {
+            print("Failed to save changes: \(error)")
         }
     }
 }

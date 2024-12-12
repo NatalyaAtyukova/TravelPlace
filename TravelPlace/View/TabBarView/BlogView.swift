@@ -1,80 +1,104 @@
 import SwiftUI
+import SwiftData
 
 struct BlogView: View {
-    @State private var searchText: String = ""
-    @State private var selectedTab: String = "home" // "home" или "explore"
-    @State private var userPosts: [Post] = [] // Хранение пользовательских постов
-    @State private var isPresentingNewPostView = false // Контроль отображения экрана создания поста
+    @Environment(\.modelContext) private var context
+    @EnvironmentObject private var userManager: UserManager
+    @Query(sort: \Post.creationDate, order: .reverse) private var allPosts: [Post]
 
-    let featuredPosts = samplePosts
+    @State private var selectedTab: String = "home"
+    @State private var isPresentingNewPostView = false
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                // Search Bar
-                SearchBar(text: $searchText, placeholder: "Search posts or topics...")
+            ScrollView { // Обертка для вертикальной прокрутки
+                VStack(spacing: 20) {
+                    // Search Bar
+                    SearchBar(text: .constant(""), placeholder: "Search posts or topics...")
 
-                // Tabs: Home / Explore
-                HStack {
-                    Button(action: {
-                        selectedTab = "home"
-                    }) {
-                        Text("home")
-                            .fontWeight(selectedTab == "home" ? .bold : .regular)
-                            .foregroundColor(selectedTab == "home" ? .blue : .gray)
-                            .padding(.bottom, 5)
-                    }
-                    Spacer()
-                    Button(action: {
-                        selectedTab = "explore"
-                    }) {
-                        Text("explore")
-                            .fontWeight(selectedTab == "explore" ? .bold : .regular)
-                            .foregroundColor(selectedTab == "explore" ? .blue : .gray)
-                            .padding(.bottom, 5)
-                    }
-                }
-                .padding(.horizontal)
-                .overlay(
-                    Divider()
-                        .padding(.horizontal, -20),
-                    alignment: .bottom
-                )
-
-                // Featured Posts Section
-                Text("Featured Posts")
-                    .font(.headline)
-                    .padding(.horizontal)
-                    .padding(.top)
-
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        ForEach(featuredPosts, id: \.id) { post in
-                            FeaturedPostCard(post: post)
+                    // Tabs: Home / Explore
+                    HStack {
+                        Button(action: {
+                            withAnimation {
+                                selectedTab = "home"
+                            }
+                        }) {
+                            Text("home")
+                                .font(.headline)
+                                .fontWeight(selectedTab == "home" ? .bold : .regular)
+                                .foregroundColor(selectedTab == "home" ? .blue : .gray)
+                                .padding(.bottom, 5)
+                                .overlay(
+                                    selectedTab == "home" ?
+                                        Rectangle()
+                                            .frame(height: 2)
+                                            .foregroundColor(.blue)
+                                            .offset(y: 10)
+                                        : nil,
+                                    alignment: .bottom
+                                )
+                        }
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                selectedTab = "explore"
+                            }
+                        }) {
+                            Text("explore")
+                                .font(.headline)
+                                .fontWeight(selectedTab == "explore" ? .bold : .regular)
+                                .foregroundColor(selectedTab == "explore" ? .blue : .gray)
+                                .padding(.bottom, 5)
+                                .overlay(
+                                    selectedTab == "explore" ?
+                                        Rectangle()
+                                            .frame(height: 2)
+                                            .foregroundColor(.blue)
+                                            .offset(y: 10)
+                                        : nil,
+                                    alignment: .bottom
+                                )
                         }
                     }
                     .padding(.horizontal)
-                }
 
-                // User Generated Posts Section
-                VStack(alignment: .leading) {
-                    Text("User Generated Posts")
-                        .font(.headline)
-                        .padding(.horizontal)
-
-                    if userPosts.isEmpty {
-                        Text("No posts yet. Be the first to share your experience!")
-                            .foregroundColor(.gray)
+                    if selectedTab == "home" {
+                        // Featured Posts Section
+                        Text("Featured Posts")
+                            .font(.title3)
+                            .fontWeight(.semibold)
                             .padding(.horizontal)
-                    } else {
-                        ForEach(userPosts, id: \.id) { post in
-                            UserGeneratedPostCard(post: post)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                ForEach(allPosts.prefix(3)) { post in
+                                    FeaturedPostCard(post: post)
+                                }
+                            }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+
+                        // User Generated Posts Section
+                        Text("User Generated Posts")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal)
+
+                        VStack(spacing: 15) {
+                            ForEach(allPosts) { post in
+                                UserGeneratedPostCard(post: post)
+                                    .padding(.horizontal)
+                            }
+                        }
+                    } else if selectedTab == "explore" {
+                        // Explore Tab Content
+                        Text("Explore Content")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal)
+                            .padding(.top)
                     }
                 }
-
-                Spacer()
             }
             .navigationTitle("Blog View")
             .toolbar {
@@ -88,9 +112,15 @@ struct BlogView: View {
             }
             .sheet(isPresented: $isPresentingNewPostView) {
                 NewPostView { newPost in
-                    userPosts.append(newPost) // Добавляем новый пост
+                    savePost(newPost)
                 }
+                .environmentObject(userManager)
             }
         }
+    }
+
+    private func savePost(_ post: Post) {
+        context.insert(post)
+        try? context.save()
     }
 }
