@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var favoritePlaces: [Destination] = [] // Общий список избранного
+    
     var body: some View {
         TabView {
 
-            ExploreView()
+            ExploreView(favoritePlaces: $favoritePlaces)
                 .tabItem {
                     Label("Explore", systemImage: "magnifyingglass")
                 }
@@ -14,7 +16,7 @@ struct MainTabView: View {
                     Label("Blog", systemImage: "text.bubble.fill")
                 }
 
-            FavoritesView()
+            FavoritesView(favoritePlaces: $favoritePlaces)
                 .tabItem {
                     Label("Favorites", systemImage: "heart.fill")
                 }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @Binding var favoritePlaces: [Destination] // Общий список избранного
     @State private var searchText1 = ""
     @State private var searchText2 = ""
 
@@ -24,7 +25,9 @@ struct ExploreView: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                         ForEach(popularDestinations) { destination in
-                            DestinationCard(destination: destination)
+                            DestinationCard(destination: destination, isFavorite: isFavorite(destination)) {
+                                toggleFavorite(destination)
+                            }
                         }
                     }
                     .padding()
@@ -33,6 +36,20 @@ struct ExploreView: View {
                 Spacer()
             }
             .navigationTitle("Explore - Popular Destinations")
+        }
+    }
+
+    // Проверка, является ли место избранным
+    private func isFavorite(_ destination: Destination) -> Bool {
+        favoritePlaces.contains(where: { $0.id == destination.id })
+    }
+
+    // Добавление/удаление из избранного
+    private func toggleFavorite(_ destination: Destination) {
+        if let index = favoritePlaces.firstIndex(where: { $0.id == destination.id }) {
+            favoritePlaces.remove(at: index) // Удаляем из избранного
+        } else {
+            favoritePlaces.append(destination) // Добавляем в избранное
         }
     }
 }

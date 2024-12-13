@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    @Binding var favoritePlaces: [Destination] // Общий список избранного
     @State private var searchText: String = "" // Для строки поиска
-    @State private var favoritePlaces: [Destination] = popularDestinations // Избранные места
 
     var body: some View {
         NavigationView {
@@ -19,33 +19,7 @@ struct FavoritesView: View {
                     }
                 }
 
-                // Нижняя панель действий
-                HStack {
-                    Button(action: {
-                        print("Remove from Favorites tapped")
-                    }) {
-                        Text("Remove from Favorites")
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-
-                    Button(action: {
-                        print("View Details tapped")
-                    }) {
-                        Text("View Details")
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                }
-                .padding(.horizontal)
+                Spacer()
             }
             .navigationTitle("Favorite Places")
         }
