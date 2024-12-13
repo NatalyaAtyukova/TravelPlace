@@ -31,10 +31,13 @@
 		C8776B402D02187D0091BB75 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B3F2D02187C0091BB75 /* Post.swift */; };
 		C8776B422D02188C0091BB75 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B412D02188C0091BB75 /* Comment.swift */; };
 		C8776B442D0218EE0091BB75 /* UserGeneratedPostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B432D0218EE0091BB75 /* UserGeneratedPostCard.swift */; };
-		C8776B462D021A650091BB75 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8776B452D021A630091BB75 /* Data.swift */; };
 		C8781EB12D0332280068077E /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB02D0332270068077E /* NewPostView.swift */; };
 		C8781EB32D0332F90068077E /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB22D0332F70068077E /* EditProfileView.swift */; };
 		C8781EB52D03372A0068077E /* FavoritePlaceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8781EB42D0337290068077E /* FavoritePlaceCard.swift */; };
+		C8D105BB2D0CD02C006D9CA3 /* DestinationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D105BA2D0CD02B006D9CA3 /* DestinationManager.swift */; };
+		C8D105BD2D0CD04A006D9CA3 /* NewDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D105BC2D0CD049006D9CA3 /* NewDestinationView.swift */; };
+		C8D105BF2D0CD0E0006D9CA3 /* EditDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D105BE2D0CD0DF006D9CA3 /* EditDestinationView.swift */; };
+		C8D105C12D0CD28C006D9CA3 /* AddDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D105C02D0CD28B006D9CA3 /* AddDestinationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,11 +65,14 @@
 		C8776B3F2D02187C0091BB75 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C8776B412D02188C0091BB75 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C8776B432D0218EE0091BB75 /* UserGeneratedPostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGeneratedPostCard.swift; sourceTree = "<group>"; };
-		C8776B452D021A630091BB75 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C8781EB02D0332270068077E /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		C8781EB22D0332F70068077E /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		C8781EB42D0337290068077E /* FavoritePlaceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaceCard.swift; sourceTree = "<group>"; };
 		C8BFAD832CEF69B2009CE628 /* TravelPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8D105BA2D0CD02B006D9CA3 /* DestinationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationManager.swift; sourceTree = "<group>"; };
+		C8D105BC2D0CD049006D9CA3 /* NewDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDestinationView.swift; sourceTree = "<group>"; };
+		C8D105BE2D0CD0DF006D9CA3 /* EditDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDestinationView.swift; sourceTree = "<group>"; };
+		C8D105C02D0CD28B006D9CA3 /* AddDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDestinationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				C845422B2D0B5B6500D21376 /* User.swift */,
-				C8776B452D021A630091BB75 /* Data.swift */,
 				C8776B412D02188C0091BB75 /* Comment.swift */,
 				C8776B3F2D02187C0091BB75 /* Post.swift */,
 				C85ECE3A2CF0F632000F0533 /* Destination.swift */,
@@ -164,6 +169,7 @@
 		C8D105B72D0CCB34006D9CA3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C8D105BA2D0CD02B006D9CA3 /* DestinationManager.swift */,
 				C84542302D0B5D4100D21376 /* UserManager.swift */,
 				C8529EAD2D0A365900342A0A /* ImagePicker.swift */,
 			);
@@ -173,6 +179,9 @@
 		C8D105B82D0CCB53006D9CA3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C8D105C02D0CD28B006D9CA3 /* AddDestinationView.swift */,
+				C8D105BE2D0CD0DF006D9CA3 /* EditDestinationView.swift */,
+				C8D105BC2D0CD049006D9CA3 /* NewDestinationView.swift */,
 				C8776B372D02144A0091BB75 /* BlogView.swift */,
 				C8781EB22D0332F70068077E /* EditProfileView.swift */,
 				C85ECE4D2CF0F668000F0533 /* ExploreView.swift */,
@@ -270,17 +279,19 @@
 			files = (
 				C8781EB32D0332F90068077E /* EditProfileView.swift in Sources */,
 				C85ECE452CF0F632000F0533 /* SearchBar.swift in Sources */,
+				C8D105BD2D0CD04A006D9CA3 /* NewDestinationView.swift in Sources */,
 				C85ECE462CF0F632000F0533 /* BottomNavigationBar.swift in Sources */,
 				C8776B3A2D0214760091BB75 /* FavoritesView.swift in Sources */,
 				C85ECE502CF0F67E000F0533 /* CategoryFilterView.swift in Sources */,
 				C85ECE542CF0F6D2000F0533 /* ActionButton.swift in Sources */,
+				C8D105BF2D0CD0E0006D9CA3 /* EditDestinationView.swift in Sources */,
 				C8776B422D02188C0091BB75 /* Comment.swift in Sources */,
 				C8776B382D02144B0091BB75 /* BlogView.swift in Sources */,
 				C8776B3E2D0216790091BB75 /* FeaturedPostCard.swift in Sources */,
+				C8D105C12D0CD28C006D9CA3 /* AddDestinationView.swift in Sources */,
 				C85ECE472CF0F632000F0533 /* TravelPlaceApp.swift in Sources */,
 				C8776B342D0213CF0091BB75 /* MainTabView.swift in Sources */,
 				C8776B442D0218EE0091BB75 /* UserGeneratedPostCard.swift in Sources */,
-				C8776B462D021A650091BB75 /* Data.swift in Sources */,
 				C8529EAE2D0A365A00342A0A /* ImagePicker.swift in Sources */,
 				C845422F2D0B5BED00D21376 /* RegistrationView.swift in Sources */,
 				C85ECE482CF0F632000F0533 /* Destination.swift in Sources */,
@@ -293,6 +304,7 @@
 				C845422C2D0B5B6800D21376 /* User.swift in Sources */,
 				C85ECE4B2CF0F632000F0533 /* DestinationCard.swift in Sources */,
 				C8781EB12D0332280068077E /* NewPostView.swift in Sources */,
+				C8D105BB2D0CD02C006D9CA3 /* DestinationManager.swift in Sources */,
 				C8781EB52D03372A0068077E /* FavoritePlaceCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

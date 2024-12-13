@@ -4,6 +4,7 @@ struct DestinationCard: View {
     let destination: Destination
     let isFavorite: Bool
     let onFavoriteToggle: () -> Void
+    let onEdit: () -> Void // Добавляем замыкание для редактирования
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,11 +24,20 @@ struct DestinationCard: View {
                 .foregroundColor(.secondary)
                 .lineLimit(2)
 
-            Button(action: onFavoriteToggle) {
-                Text(isFavorite ? "Remove from Favorites" : "Add to Favorites")
-                    .font(.footnote)
-                    .foregroundColor(isFavorite ? .red : .blue)
-                    .padding(.top, 5)
+            HStack {
+                Button(action: onFavoriteToggle) {
+                    Text(isFavorite ? "Remove from Favorites" : "Add to Favorites")
+                        .font(.footnote)
+                        .foregroundColor(isFavorite ? .red : .blue)
+                        .padding(.top, 5)
+                }
+
+                Button(action: onEdit) {
+                    Text("Edit")
+                        .font(.footnote)
+                        .foregroundColor(.green)
+                        .padding(.top, 5)
+                }
             }
         }
         .padding()

@@ -1,11 +1,12 @@
 import SwiftUI
+import SwiftData
 
 struct MainTabView: View {
-    @State private var favoritePlaces: [Destination] = [] // Общий список избранного
-    
+    @Query(sort: \Destination.name) private var destinations: [Destination] // Загружаем данные из SwiftData
+    @State private var favoritePlaces: [Destination] = [] // Для избранных мест
+
     var body: some View {
         TabView {
-
             ExploreView(favoritePlaces: $favoritePlaces)
                 .tabItem {
                     Label("Explore", systemImage: "magnifyingglass")
